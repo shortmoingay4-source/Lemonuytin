@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LYON EZ - Get Script</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0b0b12;color:#fff;font-family:Arial,sans-serif}
+.card{width:min(92%,520px);padding:30px;border-radius:20px;background:#151522;text-align:center;box-shadow:0 15px 50px #0008}
+h1{margin:0 0 8px;font-size:32px}.sub{color:#aaa;margin-bottom:25px}
+button{width:100%;padding:14px;margin-top:12px;border:0;border-radius:12px;background:#fff;color:#111;font-weight:700;font-size:16px;cursor:pointer}
+button:hover{opacity:.88}
+pre{display:none;text-align:left;white-space:pre-wrap;word-break:break-all;background:#09090e;padding:15px;border-radius:12px;color:#ddd;margin-top:18px;font-size:13px}
+#status{color:#aaa;margin-top:15px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>LYON EZ</h1>
+  <div class="sub">Get Script</div>
+  <button id="get">GET SCRIPT</button>
+  <div id="status"></div>
+  <pre id="script">loadstring(game:HttpGet("https://raw.githubusercontent.com/Tlongdev-vn/keylicense-/refs/heads/main/Lennon-Hub.lua"))()</pre>
+  <button id="copy" style="display:none">COPY SCRIPT</button>
+</div>
+<script>
+const get=document.getElementById('get'), status=document.getElementById('status');
+const box=document.getElementById('script'), copy=document.getElementById('copy');
+get.onclick=()=>{
+  let n=5; get.disabled=true; get.textContent="WAIT "+n+"s";
+  const t=setInterval(()=>{
+    n--; get.textContent=n?`WAIT ${n}s`:"GET SCRIPT";
+    if(!n){clearInterval(t);box.style.display="block";copy.style.display="block";status.textContent="Script đã sẵn sàng.";get.style.display="none";}
+  },1000);
+};
+copy.onclick=async()=>{
+  await navigator.clipboard.writeText(box.textContent);
+  copy.textContent="COPIED ✓"; setTimeout(()=>copy.textContent="COPY SCRIPT",1500);
+};
+</script>
+</body>
+</html>
